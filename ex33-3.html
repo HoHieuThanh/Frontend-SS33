@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lọc sản phẩm theo danh mục</title>
+    <style>
+      #caption {
+        font-weight: bolder;
+      }
+    </style>
+  </head>
+  <body>
+    <select id="category-select">
+      <option value="">-- Lựa chọn danh mục --</option>
+      <option value="Đồ ăn">Đồ ăn</option>
+      <option value="Nước">Nước</option>
+      <option value="Dụng cụ">Dụng cụ</option>
+    </select>
+    <button id="btn-filter">Lọc</button>
+
+    <ul id="product-list"></ul>
+
+    <script>
+      let products = [
+        { name: "Rau sạch", category: "Đồ ăn" },
+        { name: "Thịt lợn", category: "Đồ ăn" },
+        { name: "Pepsi", category: "Nước" },
+        { name: "Cocacola", category: "Nước" },
+        { name: "Cờ lê", category: "Dụng cụ" },
+        { name: "Tua vít", category: "Dụng cụ" },
+      ];
+
+      const selectE = document.querySelector("#category-select");
+      const btnFilterE = document.querySelector("#btn-filter");
+      const ulE = document.querySelector("#product-list");
+
+      const display = (productList) => {
+        productList.forEach((product) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span id="caption">Tên sản phẩm: </span>${product.name}<span id="caption"> - Danh mục: </span>${product.category}`;
+          ulE.appendChild(li);
+        });
+      };
+      display(products);
+
+      function renderProducts(productList) {
+        ulE.innerHTML = "";
+        display(productList);
+      }
+
+      btnFilterE.addEventListener("click", function () {
+        const selectedCategory = selectE.value;
+
+        if (selectedCategory === "") {
+          alert("Không hợp lệ");
+          return;
+        }
+
+        const filteredProducts = products.filter(
+          (product) => product.category === selectedCategory
+        );
+
+        renderProducts(filteredProducts);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea name="" id="text-input"></textarea>
+    <div id="count"></div>
+    <button id="btn-check">Kiểm tra</button>
+    <script>
+      const textInputE = document.getElementById("text-input");
+      const countE = document.getElementById("count");
+      const btnCheckE = document.getElementById("btn-check");
+      let text;
+      textInputE.addEventListener("input", (e) => {
+        text = e.target.value;
+      });
+      btnCheckE.addEventListener("click", () => {
+        let count = text.length;
+        countE.textContent = `${count} ký tự`;
+      });
+    </script>
+  </body>
+</html>
